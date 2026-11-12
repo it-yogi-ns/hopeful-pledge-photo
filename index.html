@@ -115,10 +115,15 @@
   var img = null, zoom = 1, offX = 0, offY = 0;
 
   var PH = H;                     // photo fills the whole frame
-  var TREE = new Image(), LOGO = new Image();
-  TREE.onload = LOGO.onload = function () { draw(); };
-  TREE.src = 'tree.jpg';
-  LOGO.src = 'logo.webp';
+  // One image: the HOPEFUL! logo from the Hopeful website (CORS-enabled CDN); local copy as fallback.
+  var LOGO_URL = 'https://images.squarespace-cdn.com/content/v1/67fbdcd952219b1a9eaef856/f27c3bc7-acfe-4442-ae88-85913c3f6ff2/Logo+with+orange+roots+PNG.png?format=750w';
+  var LOGO = new Image();
+  LOGO.crossOrigin = 'anonymous';
+  LOGO.onload = function () { draw(); };
+  LOGO.onerror = function () { if (LOGO.src.indexOf('logo.webp') < 0) LOGO.src = 'logo.webp'; };
+  LOGO.src = LOGO_URL;
+  // Tree area inside the logo's circle, as a fraction of the logo image size
+  var TREE_C = { x: 0.5, y: 0.4293, r: 0.2827 };
   var HEAD = '700 {s}px "Roboto Condensed", "Arial Narrow", sans-serif';
   var HAND = '400 {s}px "Patrick Hand", "Comic Sans MS", cursive';
   var INK = '#1F45C8';            // blue whiteboard marker
@@ -162,10 +167,14 @@
     ctx.restore();
 
     // Faded tree in the background, like the printed sign
-    if (TREE.complete && TREE.naturalWidth) {
+    if (LOGO.complete && LOGO.naturalWidth) {
+      var lw = LOGO.naturalWidth, lh = LOGO.naturalHeight;
+      var sr = TREE_C.r * lw, sx = TREE_C.x * lw - sr, sy = TREE_C.y * lh - sr;
+      var ts = SH * 1.55, tx = (SW - ts) / 2, ty = -SH * 0.22;
       ctx.save(); ctx.beginPath(); ctx.rect(0, 0, SW, SH); ctx.clip();
+      ctx.beginPath(); ctx.arc(tx + ts / 2, ty + ts / 2, ts / 2, 0, Math.PI * 2); ctx.clip();
       ctx.globalAlpha = ST.tree;
-      var ts = SH * 1.55; ctx.drawImage(TREE, (SW - ts) / 2, -SH * 0.22, ts, ts);
+      ctx.drawImage(LOGO, sx, sy, sr * 2, sr * 2, tx, ty, ts, ts);
       ctx.restore();
     }
 
