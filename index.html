@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make your Upstander pledge photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;600;700;800&family=Roboto+Condensed:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  .hpf { --forest:#17200F; --forest2:#2E3826; --leaf:#2F6B1A; --orange:#C4501A; --mist:#F3F6EE; --line:#D9E2CF;
+         font-family: Figtree, system-ui, sans-serif; color: var(--forest); max-width: 560px; margin: 0 auto; padding: 16px; box-sizing: border-box; }
+  .hpf *, .hpf *::before, .hpf *::after { box-sizing: border-box; }
+  .hpf h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 30px; line-height: 1.1; margin: 0 0 6px; letter-spacing: .3px; }
+  .hpf p.lead { margin: 0 0 18px; font-size: 16px; line-height: 1.45; color: var(--forest2); }
+  .hpf .step { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin: 18px 0 8px; }
+  .hpf .shots { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .hpf .shots label { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 64px; padding: 10px 6px;
+         border: 2px solid var(--line); border-radius: 14px; background: #fff; font-weight: 700; font-size: 14px; text-align: center; cursor: pointer; }
+  .hpf .shots label:active { border-color: var(--orange); }
+  .hpf .shots svg { width: 22px; height: 22px; }
+  .hpf .shots input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .hpf .field { margin-bottom: 10px; }
+  .hpf .field label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .hpf .field input, .hpf .field textarea { width: 100%; font: inherit; font-size: 16px; padding: 11px 12px; border: 2px solid var(--line); border-radius: 12px; background: #fff; color: var(--forest); }
+  .hpf .field input:focus, .hpf .field textarea:focus { outline: none; border-color: var(--leaf); }
+  .hpf .field textarea { resize: vertical; min-height: 70px; }
+  .hpf .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hpf .hint { font-size: 13px; color: var(--forest2); margin-top: 3px; }
+  .hpf .preview { position: relative; margin-top: 6px; border-radius: 16px; overflow: hidden; background: var(--mist); border: 2px solid var(--line); touch-action: none; }
+  .hpf canvas { display: block; width: 100%; height: auto; }
+  .hpf .adjust { display: none; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; margin-top: 10px; font-size: 14px; font-weight: 600; }
+  .hpf .adjust.on { display: grid; }
+  .hpf .adjust input[type=range] { width: 100%; accent-color: var(--orange); }
+  .hpf .actions { display: grid; gap: 8px; margin-top: 14px; }
+  .hpf button { font: inherit; font-weight: 700; font-size: 17px; padding: 14px 18px; border-radius: 999px; border: 0; cursor: pointer; }
+  .hpf .primary { background: var(--orange); color: #fff; }
+  .hpf .primary:disabled { opacity: .45; cursor: default; }
+  .hpf .secondary { background: transparent; color: var(--forest); border: 2px solid var(--forest); }
+  .hpf .secondary[hidden] { display: none; }
+  .hpf .privacy { font-size: 13px; color: var(--forest2); margin-top: 12px; line-height: 1.4; }
+  .hpf.embed > h2, .hpf.embed > p.lead { display: none; }
+  .hpf.embed { padding-top: 0; }
+  .hpf .msg { font-size: 14px; font-weight: 600; color: var(--leaf); min-height: 1.2em; margin-top: 8px; }
+</style>
+</head>
+<body style="margin:0;background:transparent;">
+
+<div class="hpf" id="hpf">
+  <h2>Make your Upstander pledge photo</h2>
+  <p class="lead">No sign needed. Snap a photo, type your pledge, and we'll put our Upstander sign in your hands, ready to save and share.</p>
+
+  <div class="step">1 · Your photo</div>
+  <div class="shots">
+    <label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      Selfie
+      <input type="file" accept="image/*" capture="user" data-photo>
+    </label>
+    <label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="4"/></svg>
+      Someone takes it
+      <input type="file" accept="image/*" capture="environment" data-photo>
+    </label>
+    <label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+      From my photos
+      <input type="file" accept="image/*" data-photo>
+    </label>
+  </div>
+
+  <div class="step">2 · Your pledge</div>
+  <div class="field">
+    <label for="hpf-pledge">I/we pledge to…</label>
+    <textarea id="hpf-pledge" maxlength="110" placeholder="walk to school every Thursday"></textarea>
+    <div class="hint"><span id="hpf-count">0</span>/110 · Keep it short and doable.</div>
+  </div>
+  <div class="row">
+    <div class="field">
+      <label for="hpf-name">Name (optional)</label>
+      <input id="hpf-name" maxlength="40" placeholder="First name or family">
+    </div>
+    <div class="field">
+      <label for="hpf-town">Town (optional)</label>
+      <input id="hpf-town" maxlength="30" placeholder="e.g. Smithers">
+    </div>
+  </div>
+
+  <div class="step">3 · Check it and save</div>
+  <div class="preview" id="hpf-preview"><canvas id="hpf-canvas" width="1080" height="1350" aria-label="Preview of your framed pledge photo"></canvas></div>
+  <div class="adjust" id="hpf-adjust">
+    <span>Zoom</span><input type="range" id="hpf-zoom" min="1" max="3" step="0.01" value="1">
+  </div>
+  <div class="hint" id="hpf-drag" hidden>Drag the photo to move it.</div>
+
+  <div class="actions">
+    <button class="primary" id="hpf-save" disabled>Save my pledge photo</button>
+    <button class="secondary" id="hpf-share" hidden>Share it</button>
+  </div>
+  <div class="msg" id="hpf-msg" role="status"></div>
+  <p class="privacy">Your photo stays on your phone. Nothing is uploaded unless you choose to send it to us.</p>
+</div>
+
+<script>
+(function () {
+  var W = 1080, H = 1350;
+  var C = { forest:'#17200F', forest2:'#2E3826', leaf:'#2F6B1A', orange:'#C4501A', mist:'#F3F6EE', white:'#FFFFFF', line:'#D9E2CF' };
+  var root = document.getElementById('hpf');
+  if (/[?&]embed=1/.test(location.search)) root.classList.add('embed');
+  var cv = document.getElementById('hpf-canvas'), ctx = cv.getContext('2d');
+  var pledge = document.getElementById('hpf-pledge'), nameIn = document.getElementById('hpf-name'), townIn = document.getElementById('hpf-town');
+  var countEl = document.getElementById('hpf-count'), saveBtn = document.getElementById('hpf-save'), shareBtn = document.getElementById('hpf-share');
+  var zoomIn = document.getElementById('hpf-zoom'), adjust = document.getElementById('hpf-adjust'), dragHint = document.getElementById('hpf-drag');
+  var msg = document.getElementById('hpf-msg');
+  var img = null, zoom = 1, offX = 0, offY = 0;
+
+  var PH = H;                     // photo fills the whole frame
+  var TREE = new Image(), LOGO = new Image();
+  TREE.onload = LOGO.onload = function () { draw(); };
+  TREE.src = 'tree.webp';
+  LOGO.src = 'logo.webp';
+  var HEAD = '700 {s}px "Roboto Condensed", "Arial Narrow", sans-serif';
+  var HAND = '400 {s}px "Patrick Hand", "Comic Sans MS", cursive';
+  var INK = '#1F45C8';            // blue whiteboard marker
+  // Sign style. 'colour' = stronger logo colours; 'classic' = faint tree like the printed sign.
+  // To switch back, set DEFAULT_STYLE to 'classic' (or add ?sign=classic to the page address to preview).
+  var DEFAULT_STYLE = 'colour';
+  var STYLES = { classic: { tree: 0.22, logo: 116 }, colour: { tree: 0.45, logo: 132 } };
+  var qs = (location.search.match(/[?&]sign=(classic|colour)/) || [])[1];
+  var ST = STYLES[qs || DEFAULT_STYLE];
+
+  function coverRect() {
+    var s = Math.max(W / img.width, PH / img.height) * zoom;
+    var w = img.width * s, h = img.height * s;
+    var maxX = (w - W) / 2, maxY = (h - PH) / 2;
+    offX = Math.max(-maxX, Math.min(maxX, offX));
+    offY = Math.max(-maxY, Math.min(maxY, offY));
+    return { x: (W - w) / 2 + offX, y: (PH - h) / 2 + offY, w: w, h: h };
+  }
+
+  function wrap(text, maxW) {
+    var words = text.split(/\s+/).filter(Boolean), lines = [], cur = '';
+    words.forEach(function (w) {
+      var t = cur ? cur + ' ' + w : w;
+      if (ctx.measureText(t).width <= maxW || !cur) cur = t; else { lines.push(cur); cur = w; }
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function fitFont(tpl, text, maxW, start, min) {
+    var s = start;
+    for (; s > min; s -= 2) { ctx.font = tpl.replace('{s}', s); if (ctx.measureText(text).width <= maxW) break; }
+    ctx.font = tpl.replace('{s}', s); return s;
+  }
+  function rule(x1, x2, y) { ctx.fillStyle = '#111'; ctx.fillRect(x1, y, x2 - x1, 4); }
+
+  function drawSign(SW, SH) {
+    // Board
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.35)'; ctx.shadowBlur = 28; ctx.shadowOffsetY = 12;
+    ctx.fillStyle = '#FDFDFB'; ctx.fillRect(0, 0, SW, SH);
+    ctx.restore();
+
+    // Faded tree in the background, like the printed sign
+    if (TREE.complete && TREE.naturalWidth) {
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 0, SW, SH); ctx.clip();
+      ctx.globalAlpha = ST.tree;
+      var ts = SH * 1.55; ctx.drawImage(TREE, (SW - ts) / 2, -SH * 0.22, ts, ts);
+      ctx.restore();
+    }
+
+    var L = 38, R = SW - 38;
+    ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left'; ctx.fillStyle = '#111';
+
+    // Headline
+    var head = 'As an Upstander for the Environment';
+    var hs = fitFont(HEAD, head, R - L, 70, 30);
+    ctx.fillText(head, L + ((R - L) - ctx.measureText(head).width) / 2, 30 + hs);
+
+    // (name) ________ pledge to:
+    var rowY = 205;
+    ctx.font = HEAD.replace('{s}', 30); ctx.fillText('(name)', L, rowY);
+    var nameX = L + ctx.measureText('(name)').width + 10;
+    ctx.font = HEAD.replace('{s}', 58);
+    var pt = 'pledge to:', ptW = ctx.measureText(pt).width;
+    ctx.fillText(pt, R - ptW, rowY);
+    var lineEnd = R - ptW - 14;
+    rule(nameX, lineEnd, rowY);
+
+    var nm = nameIn.value.trim(), tw = townIn.value.trim();
+    var who = 'I' + (nm ? ', ' + nm : '') + (tw ? ' of ' + tw : '');
+    ctx.fillStyle = INK;
+    fitFont(HAND, who, lineEnd - nameX - 24, 64, 28);
+    ctx.fillText(who, nameX + 14, rowY - 10);
+
+    // Pledge on two ruled lines; the second stops short of the logo
+    var y1 = 292, y2 = 372, logoS = ST.logo;
+    var l2End = R - logoS - 18;
+    rule(L, R, y1); rule(L, l2End, y2);
+    var text = pledge.value.trim() || 'walk to school every Thursday';
+    ctx.fillStyle = pledge.value.trim() ? INK : 'rgba(31,69,200,0.35)';
+    var s = 60, lines;
+    for (; s >= 26; s -= 2) {
+      ctx.font = HAND.replace('{s}', s);
+      lines = wrap(text, R - L - 20);
+      if (lines.length === 1) break;
+      if (lines.length === 2 && ctx.measureText(lines[1]).width <= l2End - L - 20) break;
+    }
+    lines.slice(0, 2).forEach(function (ln, i) { ctx.fillText(ln, L + 10, (i ? y2 : y1) - 10); });
+
+    // Logo bottom right
+    if (LOGO.complete && LOGO.naturalWidth) ctx.drawImage(LOGO, R - logoS + 8, SH - logoS - 8, logoS, logoS);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    if (img) {
+      var r = coverRect();
+      ctx.drawImage(img, r.x, r.y, r.w, r.h);
+    } else {
+      ctx.fillStyle = C.mist; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = C.forest2; ctx.font = '600 40px Figtree, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('Your photo goes here', W / 2, H * 0.3);
+    }
+
+    // The sign, held at chest height with a slight tilt
+    var SW = 1000, SH = 440;
+    ctx.save();
+    ctx.translate(W / 2, H - SH / 2 - 70);
+    ctx.rotate(-0.012);
+    ctx.translate(-SW / 2, -SH / 2);
+    drawSign(SW, SH);
+    ctx.restore();
+
+    saveBtn.disabled = !(img && pledge.value.trim());
+  }
+
+  function loadFile(file) {
+    if (!file) return;
+    var url = URL.createObjectURL(file);
+    var im = new Image();
+    im.onload = function () { img = im; zoom = 1; offX = 0; offY = 0; zoomIn.value = 1; adjust.classList.add('on'); dragHint.hidden = false; draw(); };
+    im.onerror = function () { msg.textContent = 'That photo could not be opened. Try another one.'; };
+    im.src = url;
+  }
+
+  root.querySelectorAll('[data-photo]').forEach(function (inp) {
+    inp.addEventListener('change', function () { loadFile(inp.files && inp.files[0]); inp.value = ''; });
+  });
+  [pledge, nameIn, townIn].forEach(function (el) { el.addEventListener('input', function () { countEl.textContent = pledge.value.length; draw(); }); });
+  zoomIn.addEventListener('input', function () { zoom = parseFloat(zoomIn.value); draw(); });
+
+  // Drag to move the photo
+  var drag = null;
+  cv.addEventListener('pointerdown', function (e) { if (!img) return; drag = { x: e.clientX, y: e.clientY, ox: offX, oy: offY }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var k = W / cv.getBoundingClientRect().width;
+    offX = drag.ox + (e.clientX - drag.x) * k; offY = drag.oy + (e.clientY - drag.y) * k; draw();
+  });
+  ['pointerup', 'pointercancel'].forEach(function (t) { cv.addEventListener(t, function () { drag = null; }); });
+
+  function fileName() {
+    var n = (nameIn.value.trim() || 'my').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    return 'hopeful-upstander-pledge-' + (n || 'my') + '.jpg';
+  }
+  function toBlob(cb) { cv.toBlob(cb, 'image/jpeg', 0.92); }
+
+  function canShareFiles(f) { try { return !!(navigator.canShare && navigator.canShare({ files: [f] })); } catch (e) { return false; } }
+
+  // Inside a Claude artifact preview, saving goes through the platform; on the real website this is null
+  var dl = null;
+  if (window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('downloads').then(function (ns) { dl = ns; }, function () {});
+  }
+
+  saveBtn.addEventListener('click', function () {
+    toBlob(function (blob) {
+      if (dl) {
+        dl.save({ filename: fileName(), data: blob })
+          .then(function () { msg.textContent = 'Saved. Thank you for being an Upstander!'; })
+          .catch(function (e) { if (!e || e.code !== 'declined') msg.textContent = 'Saving is not available here.'; });
+        return;
+      }
+      var f = new File([blob], fileName(), { type: 'image/jpeg' });
+      // On phones, the share sheet is the reliable way to "Save Image" to the camera roll
+      if (canShareFiles(f) && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        navigator.share({ files: [f] }).then(function () { msg.textContent = 'Saved or shared. Thank you for being an Upstander!'; })
+          .catch(function () {});
+        return;
+      }
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = fileName();
+      document.body.appendChild(a); a.click(); a.remove();
+      msg.textContent = 'Downloaded. Thank you for being an Upstander!';
+      if (canShareFiles(f)) shareBtn.hidden = false;
+    });
+  });
+  shareBtn.addEventListener('click', function () {
+    toBlob(function (blob) {
+      var f = new File([blob], fileName(), { type: 'image/jpeg' });
+      navigator.share({ files: [f], text: 'My HOPEFUL! Upstander pledge. hopefulcommunities.ca' }).catch(function () {});
+    });
+  });
+
+  // Draw once fonts are ready so the frame uses Anton and Figtree
+  var ready = (document.fonts && document.fonts.load) ?
+    Promise.all([document.fonts.load('700 40px "Roboto Condensed"'), document.fonts.load('400 40px "Patrick Hand"')]) : Promise.resolve();
+  ready.then(draw, draw);
+  draw();
+})();
+</script>
+</body>
+</html>
