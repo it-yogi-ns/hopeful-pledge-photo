@@ -14,9 +14,9 @@
   .hpf h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 30px; line-height: 1.1; margin: 0 0 6px; letter-spacing: .3px; }
   .hpf p.lead { margin: 0 0 18px; font-size: 16px; line-height: 1.45; color: var(--forest2); }
   .hpf .step { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin: 18px 0 8px; }
-  .hpf .shots { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .hpf .shots label { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 64px; padding: 10px 6px;
-         border: 2px solid var(--line); border-radius: 14px; background: #fff; font-weight: 700; font-size: 14px; text-align: center; cursor: pointer; }
+  .hpf .shots { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .hpf .shots label { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; min-height: 64px; padding: 14px 10px;
+         border: 2px solid var(--line); border-radius: 14px; background: #fff; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer; }
   .hpf .shots label:active { border-color: var(--orange); }
   .hpf .shots svg { width: 22px; height: 22px; }
   .hpf .shots input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
@@ -53,21 +53,12 @@
   <div class="step">1 · Your photo</div>
   <div class="shots">
     <label>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-      Selfie
-      <input type="file" accept="image/*" capture="user" data-photo>
-    </label>
-    <label>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="4"/></svg>
-      Someone takes it
-      <input type="file" accept="image/*" capture="environment" data-photo>
-    </label>
-    <label>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
-      From my photos
+      Take or choose a photo
       <input type="file" accept="image/*" data-photo>
     </label>
   </div>
+  <div class="hint">Your phone will offer the camera or your photos. Use the camera's flip button for a selfie.</div>
 
   <div class="step">2 · Your pledge</div>
   <div class="field">
